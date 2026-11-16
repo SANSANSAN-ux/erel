@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новость — ЭРЭЛ</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <span class="logo">ЭРЭЛ</span>
+
+    <a href="/">Главная</a>
+    <a href="/news">Новости</a>
+  </nav>
+
+  <main class="container">
+    <div id="news-detail" class="news-item"></div>
+
+    <a href="/news">Назад к новостям</a>
+  </main>
+
+  <script>
+    async function loadNewsDetail() {
+      const newsId = window.location.pathname.split("/").pop();
+
+      const response = await fetch(`/news/${newsId}`);
+      const news = await response.json();
+
+      const container = document.getElementById("news-detail");
+      container.innerHTML = "";
+
+      if (!response.ok) {
+        const error = document.createElement("p");
+        error.textContent = news.detail || "Новость не найдена.";
+        container.appendChild(error);
+        return;
+      }
+
+      const title = document.createElement("h3");
+      title.textContent = news.title;
+
+      const date = document.createElement("small");
+      date.textContent = news.created_at;
+
+      const text = document.createElement("p");
+      text.textContent = news.content;
+
+      const author = document.createElement("small");
+      author.textContent = "Автор: " + news.author_name;
+
+      container.appendChild(title);
+      container.appendChild(date);
+      container.appendChild(text);
+      container.appendChild(author);
+    }
+
+    loadNewsDetail();
+  </script>
+</body>
+</html>

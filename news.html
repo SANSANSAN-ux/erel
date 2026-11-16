@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новости — ЭРЭЛ</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <span class="logo">ЭРЭЛ</span>
+
+    <a href="/">Главная</a>
+    <a href="/tasks">Поручения</a>
+    <a href="/bank">Банк</a>
+    <a href="/news">Новости</a>
+  </nav>
+
+  <main class="container">
+    <h2>Новости лицея</h2>
+
+    <div id="news-list"></div>
+  </main>
+
+  <script>
+    async function loadAllNews() {
+      const response = await fetch("/news/");
+      const newsList = await response.json();
+
+      const container = document.getElementById("news-list");
+      container.innerHTML = "";
+
+      if (newsList.length === 0) {
+        container.innerHTML = "<p>Новостей пока нет.</p>";
+        return;
+      }
+
+      newsList.forEach(news => {
+        const item = document.createElement("div");
+        item.className = "news-item";
+
+        const title = document.createElement("h3");
+        title.textContent = news.title;
+
+        const date = document.createElement("small");
+        date.textContent = news.created_at;
+
+        const text = document.createElement("p");
+        text.textContent = news.content;
+
+        const author = document.createElement("small");
+        author.textContent = "Автор: " + news.author_name;
+
+        item.appendChild(title);
+        item.appendChild(date);
+        item.appendChild(text);
+        item.appendChild(author);
+
+        container.appendChild(item);
+      });
+    }
+
+    loadAllNews();
+  </script>
+</body>
+</html>

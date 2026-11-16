@@ -1,4 +1,4 @@
-from pydantic import BaseModel #описывает данные
+from pydantic import BaseModel
 from typing import Optional
 
 
@@ -23,14 +23,13 @@ class User(BaseModel):
     completed_tasks: int = 0
 
 
-class TaskCreate(BaseModel): #данные, которые сайт отправляет при создании поручения
+class TaskCreate(BaseModel):
     title: str
     description: str
     reward: int
-   
 
 
-class Task(TaskCreate): #поручение, которое сохраняет сервер наследует название, описание и награду из TaskCreate и добавляет номер, автора, статус и исполнителя
+class Task(TaskCreate):
     id: int
     creator_id: int
     status: str = "open"
@@ -55,3 +54,18 @@ class AuctionLot(BaseModel):
     current_bid: int
     highest_bidder_id: Optional[int] = None
     is_active: bool = True
+    is_sold: bool = False
+
+
+class NewsCreate(BaseModel):
+    title: str
+    content: str
+
+
+class News(BaseModel):
+    id: int
+    title: str
+    content: str
+    author_id: int
+    author_name: str
+    created_at: str

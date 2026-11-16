@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-from routers import users, tasks, bank #подключаем модули пользователей, поручений и банка
+from routers import users, tasks, bank, news #подключаем модули пользователей, поручений и банка
 
 
 app = FastAPI(title="ЭРЭЛ")
@@ -21,7 +21,7 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(tasks.router)
 app.include_router(bank.router) #строки регистрируют группы API-запросов в основном приложении
-
+app.include_router(news.router)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -46,3 +46,11 @@ def tasks_page():
 @app.get("/bank-page", include_in_schema=False)
 def bank_page():
     return FileResponse("templates/bank.html")
+@app.get("/news", include_in_schema=False)
+def news_page():
+    return FileResponse("templates/news.html")
+
+
+@app.get("/news/view/{news_id}", include_in_schema=False)
+def news_detail_page(news_id: int):
+    return FileResponse("templates/news-detail.html")
