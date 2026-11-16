@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ЭРЭЛ — Новости</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">ЭРЭЛ</a>
+        <a href="/">Главная</a>
+        <a href="/news-page">Новости</a>
+        <a href="/tasks-page">Поручения</a>
+        <a href="/bank-page">Банк</a>
+    </nav>
+
+    <main class="container">
+        <div class="card">
+            <h2>Новости лицея</h2>
+            <button onclick="loadNews()">Обновить</button>
+
+            <div id="news-list">
+                <p>Новостей пока нет.</p>
+            </div>
+        </div>
+
+        <div class="card" id="news-form-card">
+            <h2>Добавить новость</h2>
+
+            <input id="news-title" placeholder="Заголовок">
+            <textarea id="news-content" placeholder="Текст новости"></textarea>
+
+            <button onclick="createNews()">Опубликовать</button>
+            <p id="news-result"></p>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

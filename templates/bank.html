@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ЭРЭЛ — Банк</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">ЭРЭЛ</a>
+        <a href="/">Главная</a>
+        <a href="/news-page">Новости</a>
+        <a href="/tasks-page">Поручения</a>
+        <a href="/bank-page">Банк</a>
+    </nav>
+
+    <main class="container">
+        <div class="card">
+            <h2>Перевод валюты</h2>
+
+            <input id="to-user" type="number" placeholder="ID получателя">
+            <input id="amount" type="number" placeholder="Сумма">
+
+            <button onclick="transferMoney()">Перевести</button>
+            <p id="transfer-result"></p>
+        </div>
+
+        <div class="card">
+            <h2>Создать лот</h2>
+
+            <input id="item-name" placeholder="Название предмета">
+            <input id="start-price" type="number" placeholder="Начальная цена">
+
+            <button onclick="createAuction()">Создать лот</button>
+            <p id="auction-result"></p>
+        </div>
+
+        <div class="card">
+            <h2>Аукционы</h2>
+            <button onclick="loadAuctions()">Обновить</button>
+            <div id="auctions"></div>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

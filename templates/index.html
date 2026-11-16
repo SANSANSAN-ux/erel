@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ЭРЭЛ</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">ЭРЭЛ</a>
+        <a href="/">Главная</a>
+        <a href="/news-page">Новости</a>
+        <a href="/tasks-page">Поручения</a>
+        <a href="/bank-page">Банк</a>
+    </nav>
+
+    <main class="container">
+        <div class="card">
+            <h1>ЭРЭЛ</h1>
+            <p>Выполняй поручения, получай РЛИ-коины и участвуй в аукционах.</p>
+        </div>
+
+        <div class="card">
+            <h2>Регистрация</h2>
+<section class="card">
+    <h2>Мой профиль</h2>
+
+    <p id="profile-message">Войдите, чтобы увидеть свой профиль.</p>
+
+    <div id="profile-details" hidden>
+        <h3 id="profile-name"></h3>
+
+        <p>ID: <span id="profile-id"></span></p>
+        <p>Роль: <span id="profile-role"></span></p>
+        <p>Баланс: <span id="profile-balance"></span> РЛИ-коинов</p>
+        <p>Выполнено поручений: <span id="profile-completed"></span></p>
+
+        <button type="button" onclick="loadProfile()">
+            Обновить баланс
+        </button>
+
+        <button type="button" onclick="logout()">
+            Выйти
+        </button>
+    </div>
+</section>
+            <input id="reg-name" placeholder="Имя">
+            <input id="reg-username" placeholder="Логин">
+            <input id="reg-password" type="password" placeholder="Пароль">
+
+            <select id="reg-role">
+                <option value="student">Ученик</option>
+                <option value="staff">Сотрудник</option>
+            </select>
+
+            <button onclick="register()">Зарегистрироваться</button>
+            <p id="register-result"></p>
+        </div>
+
+        <div class="card">
+            <h2>Вход</h2>
+
+            <input id="login-username" placeholder="Логин">
+            <input id="login-password" type="password" placeholder="Пароль">
+
+            <button onclick="login()">Войти</button>
+            <p id="login-result"></p>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
